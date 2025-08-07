@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A soft love letter website for my man 🫦" />
+  <title>FOR MY MAN 🫦</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>For My Man 🫦</title>
@@ -8,6 +12,18 @@
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fce4ec;
+      color: #4e4e4e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      padding: 2rem;
       background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
       font-family: 'Comic Sans MS', cursive, sans-serif;
       overflow: hidden;
@@ -62,6 +78,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: #fff0f5;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       border-radius: 25px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       padding: 30px;
@@ -70,10 +88,21 @@
       max-width: 400px;
       display: none;
     }
+    .photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
 
     .popup h2 {
       color: #d63384;
       font-size: 1.8em;
+    }
+    .note {
+      font-size: 1.2rem;
+      margin-top: 1rem;
     }
 
     .popup p {
@@ -85,6 +114,11 @@
       border-radius: 50%;
       margin-top: 20px;
     }
+    .locked {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     .lock-screen {
       text-align: center;
@@ -92,6 +126,11 @@
     }
 
     input[type="password"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
       padding: 10px;
       border-radius: 10px;
       border: 1px solid pink;
@@ -99,6 +138,10 @@
     }
 
     button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #ffb6c1;
       padding: 10px 20px;
       border: none;
       border-radius: 10px;
@@ -107,6 +150,9 @@
       cursor: pointer;
       margin-top: 10px;
     }
+    button:hover {
+      background-color: #ff8da1;
+    }
 
     audio {
       display: none;
@@ -114,6 +160,13 @@
   </style>
 </head>
 <body>
+  <div class="container" id="lockedContent">
+    <div class="locked">
+      <h2>FOR MY MAN 🫦</h2>
+      <p>Enter the password, baby 😚</p>
+      <input type="password" id="passwordInput" placeholder="Password" />
+      <button onclick="unlockSite()">Unlock</button>
+    </div>
 
   <!-- Floating Hearts -->
   <script>
@@ -135,6 +188,12 @@
     <button onclick="checkPassword()">Unlock</button>
   </div>
 
+  <div class="container" id="loveNotes" style="display: none;">
+    <img class="photo" src="photo.jpeg" alt="Her Cute Photo" />
+    <h2>Hey Love 😘</h2>
+    <p class="note">You make me feel so safe and beautiful. Like I could fall apart in your arms and you'd still call me precious 🥺</p>
+    <p class="note">You're not just a man, you're MY man. And that makes you the most important person in my world 💗</p>
+    <p class="note">If I could, I’d wrap you in kisses and write on your skin how much I adore you. You're everything, BigDog2003 🐾</p>
   <!-- Main content -->
   <div class="popup" id="mainContent">
     <h2>To My Man 🫦</h2>
@@ -148,6 +207,11 @@
   </div>
 
   <script>
+    function unlockSite() {
+      const password = document.getElementById("passwordInput").value;
+      if (password === "BigDog2003") {
+        document.getElementById("lockedContent").style.display = "none";
+        document.getElementById("loveNotes").style.display = "block";
     function checkPassword() {
       const input = document.getElementById('passwordInput').value;
       if (input === 'BigDog2003') {
@@ -155,10 +219,16 @@
         document.getElementById('mainContent').style.display = 'block';
         document.getElementById('bgMusic').play();
       } else {
+        alert("Wrong password, try again 😅");
         alert('Wrong password 🥺');
       }
     }
+  }
+    }
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
