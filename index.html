@@ -11,7 +11,7 @@
       padding: 0;
       background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
       font-family: 'Satisfy', cursive;
-      overflow: hidden;
+      overflow-x: hidden;
       animation: fadeIn 2s ease-in-out;
     }
 
@@ -103,16 +103,6 @@
       text-align: center;
       margin-top: 20vh;
       animation: fadeIn 2s;
-      background-image: url('https://i.pinimg.com/originals/f3/b9/2e/f3b92e293c35ccfd81bb65c3e51ebd02.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 60px 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     input[type="password"] {
@@ -147,9 +137,6 @@
       font-size: 1.4em;
       color: #d63384;
       margin-top: 10px;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 8px 16px;
-      border-radius: 10px;
     }
 
     @keyframes typing {
@@ -161,6 +148,66 @@
       50% { border-color: transparent; }
     }
 
+    .letters-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .letter {
+      width: 150px;
+      height: 150px;
+      background-color: #ffe6f0;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.2em;
+      color: #d63384;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .letter:hover {
+      transform: scale(1.05);
+    }
+
+    .letter-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      display: none;
+    }
+
+    .letter-popup h3 {
+      color: #d63384;
+    }
+
+    .letter-popup p {
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      padding: 6px 12px;
+      background: #ff99cc;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
     audio {
       display: none;
     }
@@ -168,7 +215,6 @@
 </head>
 <body>
 
-  <!-- Floating Hearts -->
   <script>
     for (let i = 0; i < 25; i++) {
       const heart = document.createElement('div');
@@ -180,7 +226,6 @@
     }
   </script>
 
-  <!-- Lock screen -->
   <div class="lock-screen">
     <h2 class="typewriter">Enter the secret password 🩷</h2>
     <input type="password" id="passwordInput" placeholder="Password">
@@ -188,13 +233,25 @@
     <button onclick="checkPassword()">Unlock</button>
   </div>
 
-  <!-- Main content -->
   <div class="popup" id="mainContent">
-    <h2>To My Handsome Man 🫦</h2>
-    <p>You make me feel so soft, so seen, so loved and i also love your BICEPS. Thank you for the way you hold space for me. <br>
+    <h2>To My Man 🫦</h2>
+    <p>You make me feel so soft, so seen, so loved. Thank you for the way you hold space for me. <br>
     This is just a little corner of the internet, made only for you. 💌</p>
     <img src="photo.jpg" alt="My Photo">
     <p style="margin-top:20px; font-style: italic; font-size: 1.1em;">“He has me blushing even when he's not around.”</p>
+
+    <div class="letters-section">
+      <div class="letter" onclick="openLetter(1)">Letter 1</div>
+      <div class="letter" onclick="openLetter(2)">Letter 2</div>
+      <div class="letter" onclick="openLetter(3)">Letter 3</div>
+    </div>
+
+    <div class="letter-popup" id="letterPopup">
+      <h3 id="letterTitle"></h3>
+      <p id="letterContent"></p>
+      <button class="close-btn" onclick="closeLetter()">Close</button>
+    </div>
+
     <audio id="bgMusic" autoplay loop>
       <source src="miraclelove.mp3" type="audio/mpeg">
     </audio>
@@ -210,6 +267,27 @@
       } else {
         alert('Wrong password 🥺');
       }
+    }
+
+    function openLetter(num) {
+      const title = document.getElementById('letterTitle');
+      const content = document.getElementById('letterContent');
+      const popup = document.getElementById('letterPopup');
+      if (num === 1) {
+        title.textContent = "The First Time I Knew You Were Special";
+        content.textContent = "I remember the way you looked at me that one time and it felt like everything paused. You see me. Really see me.";
+      } else if (num === 2) {
+        title.textContent = "Your Voice in My Head";
+        content.textContent = "Even when you're not with me, I hear your voice in the sweetest moments. You're always there, loving me in quiet ways.";
+      } else if (num === 3) {
+        title.textContent = "When You Said 'I Love You'";
+        content.textContent = "That moment replays in my mind more often than you know. It felt safe. It felt soft. It felt like home.";
+      }
+      popup.style.display = 'block';
+    }
+
+    function closeLetter() {
+      document.getElementById('letterPopup').style.display = 'none';
     }
   </script>
 
